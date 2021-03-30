@@ -1,11 +1,16 @@
-class Customer extends BookInfo{
+package person;
+
+import book.Book;
+import book.BookInfo;
+import java.util.Scanner;
+
+public class Customer extends BookInfo {
+    private Scanner scanner = new Scanner(System.in);
     private boolean run = true;
-    Customer(){}
-    void runTrue(){
+    public void runTrue(){
         run = true;
     }
-
-    void run(){
+    public void run(){
         System.out.println("[손님]");
         while(run) {
             System.out.println("----------------------------------------------");
@@ -40,46 +45,44 @@ class Customer extends BookInfo{
             }
         }
     }
-
     private void addBook() {
         System.out.println("책 추가를 요청합니다.");
         System.out.print("책 이름을 입력해주세요 : ");
         bookName = scanner.next();
-        for(int i=0;i<booknum;i++){
-            if(bookName.equals(bookList.get(i).getBookName())){
+        for(int i = 0; i< BookInfo.bookNum; i++){
+            if(bookName.equals(BookInfo.bookList.get(i).getBookName())){
                 System.out.println("이미 있는 책입니다.");
                 return;
             }
         }
-        for(int i=0;i<bookRequest;i++){
-            if(bookName.equals(bookPlus.get(i).getBookName())){
+        for(int i = 0; i< BookInfo.bookRequest; i++){
+            if(bookName.equals(BookInfo.bookPlus.get(i).getBookName())){
                 System.out.println("이미 요청받은 책입니다.");
                 return;
             }
         }
-        bookPlus.add(new Book(bookName,1));
-        bookRequest++;
+        BookInfo.bookPlus.add(new Book(bookName,1));
+        BookInfo.bookRequest++;
         System.out.println("책을 추가 요청했습니다.");
-    }
-
+    } // 책 추가 요청
     private void borrowBook(){
         System.out.println("책 빌리기를 요청합니다.");
         System.out.print("책 이름을 입력해주세요 : ");
         bookName = scanner.next();
-        for(int i=0;i< bookList.size();i++){
-            if(bookName.equals(bookList.get(i).getBookName())){
+        for(int i = 0; i< BookInfo.bookList.size(); i++){
+            if(bookName.equals(BookInfo.bookList.get(i).getBookName())){
                 System.out.println("저희 도서관에 있는 책입니다. 빌려가세요~");
                 System.out.println("책을 빌려갑니다.");
-                if(bookList.get(i).getBookCount() > 1){ // 책이 한 권 이상 있을 경우
-                    bookList.get(i).minusBookCount();
+                if(BookInfo.bookList.get(i).getBookCount() > 1){ // 책이 한 권 이상 있을 경우
+                    BookInfo.bookList.get(i).minusBookCount();
                     return;
                 }else{
-                    bookList.remove(bookList.get(i));
+                    BookInfo.bookList.remove(BookInfo.bookList.get(i));
                 }
-                booknum--;
+                BookInfo.bookNum--;
                 return;
             }
         }
         System.out.println("저희 도서관에 없는 책입니다.");
-    }
+    } // 책 빌리기
 }

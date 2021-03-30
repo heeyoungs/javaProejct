@@ -1,11 +1,15 @@
+import book.Book;
+import book.BookInfo;
+import person.Customer;
+import person.Owner;
 import java.util.Scanner;
 
-public class Libiary {
+public class Library {
     public static void main(String[] args){
         BookInfo.bookList.add(new Book("java",5));
         BookInfo.bookList.add(new Book("algorithm",1));
         BookInfo.bookList.add(new Book("dataStructure",4));
-        Owner owenr = new Owner();
+        Owner owner = new Owner();
         Customer customer = new Customer();
         boolean run = true;
         int who;
@@ -21,8 +25,8 @@ public class Libiary {
             }
             switch (who) {
                 case 1:
-                    owenr.runTrue();
-                    owenr.run();
+                    owner.runTrue();
+                    owner.run();
                     break;
                 case 2:
                     customer.runTrue();
@@ -36,7 +40,6 @@ public class Libiary {
                     break;
             }
         }
-
         System.out.println("감사합니다. 다음에 또 이용하세요!");
     }
 }
