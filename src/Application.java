@@ -1,18 +1,17 @@
 import book.Book;
-import book.BookSort;
 import book.Library;
 import exception.InputNotNumberException;
 import person.Customer;
 import person.Owner;
 
-import java.util.Collections;
 import java.util.Scanner;
 
 public class Application {
     public static void main(String[] args) throws InputNotNumberException {
-        Library.bookList.add(new Book("java", "j"));
-        Library.bookList.add(new Book("algorithm", "a"));
-        Library.bookList.add(new Book("data structure", "d"));
+        Library.bookList.put(new Book("java", "j"),1998);
+        Library.bookList.put(new Book("algorithm", "a"),2000);
+        Library.bookList.put(new Book("data structure", "d"),2004);
+        Library.bookList.put(new Book("design pattern","d"),1998);
 
         Scanner scanner = new Scanner(System.in);
         Owner owner = new Owner();
@@ -50,7 +49,6 @@ public class Application {
                                 System.out.println("2.추가 요청 받은 책 확인 및 추가하기");
                                 System.out.println("3.책 제거하기");
                                 System.out.println("4.도서관의 책 목록 확인하기");
-                                System.out.println("5.책 정리하기");
                                 System.out.println("0.관리자 모드 종료하기");
                                 System.out.print("입력 : ");
                                 try {
@@ -70,10 +68,6 @@ public class Application {
                                         break;
                                     case 4:
                                         Library.checkBook();
-                                        break;
-                                    case 5:
-                                        Collections.sort(Library.bookList, new BookSort());
-                                        System.out.println("책을 가나다 순으로 정리합니다.");
                                         break;
                                     case 0:
                                         ownerRun = false;
